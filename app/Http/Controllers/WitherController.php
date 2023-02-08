@@ -7,7 +7,8 @@
 
     class WitherController extends Controller {
         public function index() {
-            return 'Hello';
+            $withers = Wither::all();
+            return view('wither', compact('withers'));
         }
 
         public function create() {
