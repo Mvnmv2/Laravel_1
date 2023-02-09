@@ -8,11 +8,11 @@
     class WitherController extends Controller {
         public function index() {
             $withers = Wither::all();
-            return view('wither', compact('withers'));
+            return view('wither.index', compact('withers'));
         }
 
         public function create() {
-            $withersList = [
+            /*$withersList = [
                 [
                     'name' => 'Геральт',
                     'city_of_birth' => 'Ривия',
@@ -41,13 +41,46 @@
                     'school' => 'Волк',
                     'girl' => ''
                 ],
-            ];
-
-            foreach ($withersList as $item) {
-                Wither::create($item);
-            }
-            dump('Successful');
-
+            ];*/
+            return view('wither.create');
         }
+
+        public function store() {
+            $data = request()->validate([
+                'name' => 'string',
+                'city_of_birth' => 'string',
+                'year_of_birth' => 'Numeric',
+                'school' => 'string',
+                'girl' => ''
+            ]);
+            Wither::create($data);
+            return redirect()->route('wither.index');
+        }
+
+        public function show(Wither $wither) {
+            return view('wither.show', compact('wither'));
+        }
+
+        public function edit(Wither $wither) {
+            return view('wither.edit', compact('wither'));
+        }
+
+        public function update(Wither $wither) {
+            $data = request()->validate([
+                'name' => 'string',
+                'city_of_birth' => 'string',
+                'year_of_birth' => 'Numeric',
+                'school' => 'string',
+                'girl' => ''
+            ]);
+            $wither->update($data);
+            return redirect()->route('wither.show', $wither->id);
+        }
+
+        public function destroy(Wither $wither) {
+            $wither->delete();
+            return redirect()->route('wither.index');
+        }
+
 
     }

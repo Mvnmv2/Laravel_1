@@ -19,7 +19,8 @@
                         <a class="nav-link" href="{{route('post.index')}}">Posts</a>
                         <a class="nav-link" href="{{route('contact.index')}}">Contact</a>
                         <a class="nav-link" href="{{route('about.index')}}">About</a>
-                        <a class="nav-link disabled">Disabled</a>
+                        <a class="nav-link"  href="{{ route('wither.index') }}">Withers</a>
+                        <a class="nav-link"  href="{{ route('book.index') }}">Books</a>
                     </div>
                 </div>
             </div>
