@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Models\Category;
     use App\Models\Post;
     use App\Models\Wither;
     use Illuminate\Http\Request;
@@ -10,7 +11,11 @@
 
         public function index() {
             $posts = Post::all();
-            return view('post.index', compact('posts'));
+
+            $category = Category::find(1);
+
+            dd($category->posts);
+            //return view('post.index', compact('posts'));
         }
 
         public function create() {
