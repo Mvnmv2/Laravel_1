@@ -16,7 +16,7 @@
     Route::get('/', function () {
         return view('welcome');
     });
-/**/
+    /**/
     /*Withers*/
     Route::get('/withers', [\App\Http\Controllers\WitherController::class, 'index'])->name('wither.index');
     Route::get('/withers/create', [\App\Http\Controllers\WitherController::class, 'create'])->name('wither.create');
@@ -31,13 +31,18 @@
     Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
 
     /*Posts*/
-    Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index'])->name('post.index');
-    Route::get('/posts/create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
-    Route::post('/posts', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
-    Route::get('/posts/{post}', [\App\Http\Controllers\PostController::class, 'show'])->name('post.show');
-    Route::get('/posts/{post}/edit', [\App\Http\Controllers\PostController::class, 'edit'])->name('post.edit');
-    Route::patch('/posts/{post}', [\App\Http\Controllers\PostController::class, 'update'])->name('post.update');
-    Route::delete('/posts{post}', [\App\Http\Controllers\PostController::class, 'destroy'])->name('post.delete');
+
+    Route::group(['namespace' => '\App\Http\Controllers\Post'], function () {
+        Route::get('/posts', 'IndexController')->name('post.index');
+        Route::get('/posts/create', 'CrateController')->name('post.create');
+        Route::post('/posts', 'StoreController')->name('post.store');
+        Route::get('/posts/{post}', 'ShowController')->name('post.show');
+        Route::get('/posts/{post}/edit', 'EditController')->name('post.edit');
+        Route::patch('/posts/{post}','UpdateController')->name('post.update');
+        Route::delete('/posts{post}', 'DeleteController')->name('post.delete');
+    });
+
+
 
     /*Books*/
     Route::get('/books', [\App\Http\Controllers\BookController::class, 'index'])->name('book.index');

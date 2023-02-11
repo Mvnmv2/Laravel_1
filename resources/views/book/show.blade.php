@@ -17,7 +17,7 @@
 
             </div>
         </div>
-        <a href="{{ route('book.index') }}" class="btn btn-primary mt-1">Назад</a>
+        <a href="{{ route('book.indexController') }}" class="btn btn-primary mt-1">Назад</a>
     </div>
 @endsection
 
