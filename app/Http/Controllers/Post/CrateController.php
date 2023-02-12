@@ -7,7 +7,7 @@
     use App\Models\Post;
     use App\Models\Tag;
 
-    class CrateController extends Controller {
+    class CrateController extends BaseController {
 
         public function __invoke() {
             $tags = Tag::all();
