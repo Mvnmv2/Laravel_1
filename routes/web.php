@@ -38,8 +38,17 @@
         Route::post('/posts', 'StoreController')->name('post.store');
         Route::get('/posts/{post}', 'ShowController')->name('post.show');
         Route::get('/posts/{post}/edit', 'EditController')->name('post.edit');
-        Route::patch('/posts/{post}','UpdateController')->name('post.update');
+        Route::patch('/posts/{post}', 'UpdateController')->name('post.update');
         Route::delete('/posts{post}', 'DeleteController')->name('post.delete');
+    });
+
+    /*Admin*/
+    Route::group(['namespace' => '\App\Http\Controllers\Admin', 'prefix' => 'admin'], function () {
+        Route::group(['namespace' => 'Post'], function () {
+            Route::get('/post', 'IndexController')->name('admin.post.index');
+            Route::get('/post/create', 'CrateController')->name('admin.post.create');
+
+        });
     });
 
 
