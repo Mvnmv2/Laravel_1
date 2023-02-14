@@ -14,6 +14,10 @@
         public function __invoke(FilterRequest $request) {
             //$posts = Post::all();
 
+            //Так можно использовать Policy
+            /*$this->authorize('view', auth()->user());*/
+
+
             $data = $request->validated();
 
             $filter = app()->make(PostFilter::class, ['queryParams' => array_filter($data)]);

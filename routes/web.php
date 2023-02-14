@@ -13,9 +13,8 @@
     |
     */
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
     /**/
     /*Withers*/
     Route::get('/withers', [\App\Http\Controllers\WitherController::class, 'index'])->name('wither.index');
@@ -43,7 +42,7 @@
     });
 
     /*Admin*/
-    Route::group(['namespace' => '\App\Http\Controllers\Admin', 'prefix' => 'admin'], function () {
+    Route::group(['namespace' => '\App\Http\Controllers\Admin', 'prefix' => 'admin', 'middleware'=>'admin'], function () {
         Route::group(['namespace' => 'Post'], function () {
             Route::get('/post', 'IndexController')->name('admin.post.index');
             Route::get('/post/create', 'CrateController')->name('admin.post.create');
@@ -61,3 +60,7 @@
     Route::get('/books/{book}/edit', [\App\Http\Controllers\BookController::class, 'edit'])->name('book.edit');
     Route::patch('/books/{book}', [\App\Http\Controllers\BookController::class, 'update'])->name('book.update');
     Route::delete('/books/{book}', [\App\Http\Controllers\BookController::class, 'destroy'])->name('book.destroy');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
